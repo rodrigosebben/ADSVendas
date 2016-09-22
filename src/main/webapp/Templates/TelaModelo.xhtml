@@ -5,10 +5,11 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">    
+      <link href="estilo.css" rel="stylesheet" type="text/css"/>
     <h:head>
         <title><ui:insert name="titulo"/></title>
     </h:head>
-    <h:body>
+    <h:body class="tela">
 
         <h:form id="form">
             <h2>ADSVENDAS</h2>
@@ -87,7 +88,15 @@
 
             <p:menuitem value="Logout" url="http://www.primefaces.org" icon="ui-icon-close" />
         </p:megaMenu>
-
+        
+        <ui:insert name="conteudo">
+            
+        </ui:insert>
+        
+        <p:outputPanel deferred="true" class="rodape">
+            <img src="Imagens/Logo-IFRS.png" height="30px">Desenvolvido por: Gabriel Portal - Morgana Goulart - Rodrigo Sebben - Analise e desenvolvimento de sistemas - IFRS 2016/02</img>
+        </p:outputPanel>               
+        
     </h:body>
 </html>
 
