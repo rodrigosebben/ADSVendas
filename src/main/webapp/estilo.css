@@ -12,9 +12,9 @@ and open the template in the editor.
 {
     bottom: 0;
     position: absolute;
-    width: 100%;
+    width: 99%;
     /*background-color: graytext;*/
-    border: solid black 1pt;
+    /*border: solid black 1pt;*/
     align-content: center;
     /*height: 50px;*/
 }
