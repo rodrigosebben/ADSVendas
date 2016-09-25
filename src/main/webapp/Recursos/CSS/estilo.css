@@ -16,3 +16,7 @@ and open the template in the editor.
     border: solid black 1pt;
     align-content: center;
 }
+
+#login-html,login-body{
+    height: 100%;
+}
