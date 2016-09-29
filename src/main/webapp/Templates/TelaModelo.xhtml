@@ -6,10 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">    
 
-    <link href="Recursos/CSS/estilo.css" rel="stylesheet" type="text/css"/>
+    
 
     <h:head>
         <title><ui:insert name="titulo"/></title>
+        <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
     <h:body class="tela">
 
@@ -73,11 +74,11 @@
                 <p:submenu label="Configurações" icon="ui-icon-gear">
                     <p:column>
                         <p:submenu label="Controle de acesso">
-                            <p:menuitem value="Cadastro de usuário" action="Usuario/cadastroUsuario.xhtml" />
+                            <p:menuitem value="Cadastro de usuário" action="cadastrousuarios" />
                             <p:menuitem value="Acessos" action="#" />
                         </p:submenu>
                         <p:submenu label="Cadastro">
-                            <p:menuitem value="Empresa" action="Empresa/Empresa.xhtml" />
+                            <p:menuitem value="Empresa" action="cadastroempresa" />
                         </p:submenu>
                         
                         
@@ -99,8 +100,8 @@
         </ui:insert>
 
         <p:outputPanel deferred="true" class="rodape">
-            <img src="Recursos/IMAGENS/Logo-IFRS.png" height="30px" alt="logo IIFRS">
-                Desenvolvido por: Gabriel Portal - Morgana Goulart - Rodrigo Sebben - Analise e desenvolvimento de sistemas - IFRS 2016/02</img>
+            <h:graphicImage library="IMAGENS" name="Logo-IFRS.png" height="30px" alt="logo IIFRS"/>
+                Desenvolvido por: Gabriel Portal - Morgana Goulart - Rodrigo Sebben - Analise e desenvolvimento de sistemas - IFRS 2016/02
         </p:outputPanel>               
 
     </h:body>
