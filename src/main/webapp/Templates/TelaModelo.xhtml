@@ -22,11 +22,11 @@
                 <p:submenu label="Frente de caixa" icon="ui-icon-cart">
                     <p:column>
                         <p:submenu label="Vendas">
-                            <p:menuitem value="Efetuar lançamentos" url="#" />
+                            <p:menuitem value="Efetuar lançamentos" action="#" />
                         </p:submenu>
                         <p:submenu label="Relatórios">
-                            <p:menuitem value="Relação de vendas" url="#" />
-                            <p:menuitem value="Estatisticas de vendas" url="#" />
+                            <p:menuitem value="Relação de vendas" action="#" />
+                            <p:menuitem value="Estatisticas de vendas" action="#" />
                         </p:submenu>
                     </p:column>
 
@@ -39,18 +39,18 @@
 
                     <p:column>
                         <p:submenu label="Serviços">
-                            <p:menuitem value="Tipo de serviço" url="#" />
-                            <p:menuitem value="Serviços" url="#" />
+                            <p:menuitem value="Tipo de serviço" action="#" />
+                            <p:menuitem value="Serviços" action="#" />
                         </p:submenu>
                         <p:submenu label="Clientes">
-                            <p:menuitem value="Cadastro de cliente" url="#" />
+                            <p:menuitem value="Cadastro de cliente" action="#" />
                         </p:submenu>
                     </p:column>
 
                     <p:column>
                         <p:submenu label="Relatórios">
-                            <p:menuitem value="Lista de Serviços" url="#" />
-                            <p:menuitem value="Lista de clientes" url="#" />
+                            <p:menuitem value="Lista de Serviços" action="#" />
+                            <p:menuitem value="Lista de clientes" action="#" />
                         </p:submenu>
                     </p:column>
                 </p:submenu>
@@ -58,14 +58,14 @@
                 <p:submenu label="Estoque" icon="ui-icon-tag">
                     <p:column>
                         <p:submenu label="Cadastros">
-                            <p:menuitem value="Tipo de produto" url="#" />
-                            <p:menuitem value="Fornecedor" url="#" />
-                            <p:menuitem value="Produto" url="#" />
-                            <p:menuitem value="Gerenciar Estoque" url="#" />
+                            <p:menuitem value="Tipo de produto" action="#" />
+                            <p:menuitem value="Fornecedor" action="#" />
+                            <p:menuitem value="Produto" action="#" />
+                            <p:menuitem value="Gerenciar Estoque" action="#" />
                         </p:submenu>
                         <p:submenu label="Relatórios">
-                            <p:menuitem value="Pedido de compra" url="#" />
-                            <p:menuitem value="Posição atual do estoque" url="#" />
+                            <p:menuitem value="Pedido de compra" action="#" />
+                            <p:menuitem value="Posição atual do estoque" action="#" />
                         </p:submenu>
                     </p:column>
                 </p:submenu>
@@ -73,17 +73,19 @@
                 <p:submenu label="Configurações" icon="ui-icon-gear">
                     <p:column>
                         <p:submenu label="Controle de acesso">
-                            <p:menuitem value="Cadastro de usuário" url="#" />
-                            <p:menuitem value="Acessos" url="#" />
+                            <p:menuitem value="Cadastro de usuário" action="Usuario/cadastroUsuario.xhtml" />
+                            <p:menuitem value="Acessos" action="#" />
                         </p:submenu>
                         <p:submenu label="Cadastro">
-                            <p:menuitem value="Empresa" action="Empresa.xhtml" />
+                            <p:menuitem value="Empresa" action="Empresa/Empresa.xhtml" />
                         </p:submenu>
+                        
+                        
                     </p:column>
                     <p:column>
                         <p:submenu label="Relatórios">
-                            <p:menuitem value="Relação de usuários" url="#" />
-                            <p:menuitem value="Relação de acessos" url="#" />
+                            <p:menuitem value="Relação de usuários" action="#" />
+                            <p:menuitem value="Relação de acessos" action="#" />
                         </p:submenu>
                     </p:column>
                 </p:submenu>
