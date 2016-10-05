@@ -1,4 +1,4 @@
-package usuario;
+package br.edu.ifrs.restinga.modelo;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ public class Usuario {
     private int id;
     private int usuarioTipoId;
     private String nomeUsuario;
-    private String usuario;
+    private String login;
     private String senha;
     private Date dataCadastro;
     private int empresaId;
@@ -36,12 +36,12 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSenha() {

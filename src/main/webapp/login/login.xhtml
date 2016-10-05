@@ -33,16 +33,16 @@
                                             <p:growl autoUpdate="true"/>
                                             <div class="row">
                                                 <div class="col s12 input-field">
-                                                    <h:inputText id="usuario" required="true" requiredMessage="Favor digitar o usuário"/>
+                                                    <h:inputText id="usuario" id="txtLogin" value="#{sessaoUsuarioBean.login}" required="true" requiredMessage="Favor digitar o usuário"/>
                                                     <h:outputLabel for="usuario" value="Usuário"/>
                                                 </div>
                                                 <div class="col s12 input-field">
-                                                    <h:inputText id="senha" required="true" requiredMessage="Favor digitar a senha"/>
+                                                    <h:inputText id="senha" value="#{sessaoUsuarioBean.senha}" required="true" requiredMessage="Favor digitar a senha"/>
                                                     <h:outputLabel for="senha" value="Senha"/>
                                                 </div>
 
                                                 <div class="col s12 input-field">
-                                                    <h:commandLink value="login" styleClass="waves-effect waves-light btn-large" />                                                    
+                                                    <h:commandLink value="login" action="#{sessaoUsuarioBean.fazerLogin()}" styleClass="waves-effect waves-light btn-large" />                                                    
                                                 </div>
                                             </div>
                                         </h:form>
