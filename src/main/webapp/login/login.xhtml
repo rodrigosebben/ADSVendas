@@ -13,8 +13,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-       <h:outputStylesheet library="css" name="estilo.css"/>
-       
+        <h:outputStylesheet library="css" name="estilo.css"/>
+
     </h:head>
 
     <h:body id="login-body" styleClass="green lighten-2">   
@@ -33,12 +33,13 @@
                                             <p:growl autoUpdate="true"/>
                                             <div class="row">
                                                 <div class="col s12 input-field">
-                                                    <h:inputText id="usuario" id="txtLogin" value="#{sessaoUsuarioBean.login}" required="true" requiredMessage="Favor digitar o usuário"/>
+                                                    <h:inputText id="usuario" value="#{sessaoUsuarioBean.login}" required="true" requiredMessage="Favor digitar o usuário"/>
                                                     <h:outputLabel for="usuario" value="Usuário"/>
                                                 </div>
                                                 <div class="col s12 input-field">
-                                                    <h:inputText id="senha" value="#{sessaoUsuarioBean.senha}" required="true" requiredMessage="Favor digitar a senha"/>
+                                                    <h:inputSecret id="senha" value="#{sessaoUsuarioBean.senha}" required="true" requiredMessage="Favor digitar a senha"/>
                                                     <h:outputLabel for="senha" value="Senha"/>
+
                                                 </div>
 
                                                 <div class="col s12 input-field">
@@ -54,7 +55,7 @@
                 </div>
             </div>
         </div>
-   
+
         <script>
             $(document).on("ready", function ()) {
                 $('login-page').css({'height': window.innerHeight + 'px'});

@@ -48,7 +48,7 @@ public class FiltroLogin implements Filter {
             }
         }
         if(redirecionar)
-            ((HttpServletResponse)response).sendRedirect(req.getContextPath()+"/faces/login.xhtml");
+            ((HttpServletResponse)response).sendRedirect(req.getContextPath()+"/faces/login/login.xhtml");
         else
             chain.doFilter(request, response);
     }

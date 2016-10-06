@@ -5,7 +5,7 @@
  */
 package br.edu.ifrs.restinga.persistencia;
 
-import org.hibernate.Session;
+
 import java.util.List;
 import br.edu.ifrs.restinga.modelo.Usuario;
 import org.hibernate.Query;
