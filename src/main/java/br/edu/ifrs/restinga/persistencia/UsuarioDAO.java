@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifrs.restinga.persistencia;
-
 
 import java.util.List;
 import br.edu.ifrs.restinga.modelo.Usuario;
@@ -39,9 +33,9 @@ public class UsuarioDAO {
         return sessao.createCriteria(Usuario.class).list();
     }
     
-    public Usuario consultaPorLoginESenha(String login, String senha) {
-        Query consulta = sessao.createQuery("FROM Usuario WHERE login = :login and senha = :senha");
-        consulta.setString("login", login);
+    public Usuario consultaPorLoginESenha(String usuario, String senha) {
+        Query consulta = sessao.createQuery("Select usuario FROM Usuario usuario WHERE  usuario.usuario = :usuario and usuario.senha = :senha");
+        consulta.setString("usuario", usuario);
         consulta.setString("senha", senha);
         return (Usuario) consulta.uniqueResult();
     }

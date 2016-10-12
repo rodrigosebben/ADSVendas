@@ -1,16 +1,23 @@
 package br.edu.ifrs.restinga.modelo;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
+@Entity
+@Table(name="usuario")
 public class Usuario {
+    @Id
+    @GeneratedValue
     private int id;
-    private int usuarioTipoId;
+    private int usuario_Tipo_Id;
     private String nomeUsuario;
-    private String login;
+    private String usuario;
     private String senha;
     private Date dataCadastro;
-    private int empresaId;
+    private int empresa_Id;
 
     public int getId() {
         return id;
@@ -20,12 +27,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public int getUsuarioTipoId() {
-        return usuarioTipoId;
+    public int getUsuario_Tipo_Id() {
+        return usuario_Tipo_Id;
     }
 
-    public void setUsuarioTipoId(int usuarioTipoId) {
-        this.usuarioTipoId = usuarioTipoId;
+    public void setUsuario_Tipo_Id(int usuario_Tipo_Id) {
+        this.usuario_Tipo_Id = usuario_Tipo_Id;
     }
 
     public String getNomeUsuario() {
@@ -36,12 +43,12 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {
@@ -60,12 +67,12 @@ public class Usuario {
         this.dataCadastro = dataCadastro;
     }
 
-    public int getEmpresaId() {
-        return empresaId;
+    public int getEmpresa_Id() {
+        return empresa_Id;
     }
 
-    public void setEmpresaId(int empresaId) {
-        this.empresaId = empresaId;
+    public void setEmpresa_Id(int empresa_Id) {
+        this.empresa_Id = empresa_Id;
     }
     
 }
