@@ -27,6 +27,8 @@ public class Empresa
     private String bairro;
     private String cidade;
     private String uf;
+    private String telefone;
+    private String celular;
 
     public int getId() {
         return id;
@@ -122,6 +124,22 @@ public class Empresa
 
     public void setUf(String uf) {
         this.uf = uf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
     
 }
