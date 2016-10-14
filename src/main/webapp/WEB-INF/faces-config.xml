@@ -6,7 +6,7 @@
     <navigation-rule>
         <navigation-case>
             <from-outcome>cadastrousuarios</from-outcome>
-            <to-view-id>usuario/cadastroUsuario.xhtml</to-view-id>
+            <to-view-id>usuario/usuario.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>cadastroempresa</from-outcome>

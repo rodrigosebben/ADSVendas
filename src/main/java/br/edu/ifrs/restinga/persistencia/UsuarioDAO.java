@@ -10,7 +10,7 @@ import org.hibernate.Session;
  * @author Morgana
  */
 public class UsuarioDAO {
-    private Session sessao;
+    private final Session sessao;
     
     public UsuarioDAO() {
         sessao = HibernateUtil.getSessionFactory().getCurrentSession();

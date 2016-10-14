@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      >     
+
+    <ui:composition template="../Templates/TelaModelo.xhtml">
+        <ui:define name="titulo">
+            Usuario
+        </ui:define>
+        <ui:define name="conteudo">
+            <p:growl/>
+            <h:form>
+                <p:outputPanel style="background-color: buttonface;display:block;padding-top: 1pt;padding-bottom: 1pt;border: solid black 1pt">
+                    <center><p style="font-weight: bold">USUARIOS</p></center>
+                </p:outputPanel>
+                
+                <p:outputPanel style="display:block;padding-top: 3pt;padding-bottom: 3pt;">
+                    <p:commandButton value="Cadastrar Usuario" type="button" ajax="false" icon="ui-icon-circle-plus" actionListener="#{usuarioBean.carregar(usuario.id)}" onclick="PF('cadastro').show();"/>
+                </p:outputPanel>
+                
+                <p:dataTable value="#{usuarioBean.listaUsuarios}" var="usuario" paginator="true" rows="10">
+                    <p:column headerText="ID" sortBy="#{usuario.id}" width="90">
+                        #{usuario.id}
+                    </p:column>
+                    <p:column headerText="NOME" sortBy="#{usuario.nomeUsuario}">
+                        #{usuario.nomeUsuario}
+                    </p:column>
+                    <p:column headerText="DATA DE CADASTRO" sortBy="#{usuario.dataCadastro}">
+                        #{usuario.dataCadastro}
+                    </p:column>
+                    <p:column headerText="TIPO DE USUARIO" sortBy="#{usuario.usuario_Tipo_Id}">
+                        #{usuario.usuario_Tipo_Id}
+                    </p:column>
+                    
+                    
+                    <p:column width="90">
+                        <p:commandButton type="button" ajax="false" icon="ui-icon-search" actionListener="#{usuarioBean.carregar(usuario.id)}" onclick="PF('cadastro').show();"/>
+                        <p:commandButton ajax="false" icon="ui-icon-trash" actionListener="#{usuarioBean.remover(usuario)}"/>
+                    </p:column>
+                </p:dataTable>
+                
+                <p:dialog header="Cadastro de Usuario" widgetVar="cadastro" modal="true" height="500">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel for="txtNomeUsuario" value="Nome: "/>
+                        <h:inputText id="txtNomeUsuario" required="true" value="#{usuarioBean.usuario.nomeUsuario}"/>
+                        
+                        <p:outputLabel for="txtUsuario" value="Usuario: "/>
+                        <h:inputText id="txtUsuario" required="true" value="#{usuarioBean.usuario.usuario}"/>
+                        
+                        <p:outputLabel for="txtSenha" value="Senha: "/>
+                        <h:inputText id="txtSenha" required="true" value="#{usuarioBean.usuario.senha}"/>
+                        
+                        <p:outputLabel for="txtValidaSenha" value="Senha: "/>
+                        <h:inputText id="txtValidaSenha"/>
+                        
+                        <p:outputLabel for="txtUsuarioTipo" value="Tipo de Usuario: "/>
+                        <h:inputText id="txtUsuarioTipo" value="#{usuarioBean.usuario.usuario_Tipo_Id}"/>
+                        
+                        <p:outputLabel for="txtEmpresaId" value="Empresa Id: "/>
+                        <h:inputText id="txtEmpresaId" value="#{usuarioBean.usuario.empresa_Id}"/>
+                        
+                    </h:panelGrid>
+                    
+                    <p:commandButton value="Voltar" onclick="PF('cadastro').hide()"/>
+                    <p:commandButton ajax="false" value="Salvar" actionListener="#{usuarioBean.salvar()}"/>
+                </p:dialog>
+                
+            </h:form>    
+            
+        </ui:define>
+
+    </ui:composition>
+    
+</html>
