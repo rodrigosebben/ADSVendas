@@ -14,7 +14,6 @@ public class UsuarioDAO {
     
     public UsuarioDAO() {
         sessao = HibernateUtil.getSessionFactory().getCurrentSession();
-        sessao.beginTransaction();
     }
     
     public void salvar(Usuario usuario) {
@@ -41,6 +40,5 @@ public class UsuarioDAO {
     }
     
     public void encerrar() {
-        sessao.getTransaction().commit();
     }
 }
