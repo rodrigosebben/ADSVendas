@@ -50,11 +50,16 @@ public class CadastroUsuarioBean {
     
     public void salvar() {
         dao.salvar(usuario);
+        usuario = new Usuario();
         enviarMensagem(FacesMessage.SEVERITY_INFO, "Usuario cadastrado com sucesso");
     }
     
     public void carregar(int id) {
         usuario = dao.carregar(id);
+    }
+    
+    public void carregarNovo(int id) {
+        usuario = new Usuario();
     }
     
     public void remover(Usuario usuario) {
