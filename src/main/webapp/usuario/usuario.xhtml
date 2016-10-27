@@ -18,7 +18,7 @@
                 </p:outputPanel>
                 
                 <p:outputPanel style="display:block;padding-top: 3pt;padding-bottom: 3pt;">
-                    <p:commandButton value="Cadastrar Usuario" type="button" ajax="false" icon="ui-icon-circle-plus" actionListener="#{usuarioBean.carregar(usuario.id)}" onclick="PF('cadastro').show();"/>
+                    <p:commandButton value="Cadastrar Usuario" type="button" ajax="false" icon="ui-icon-circle-plus" actionListener="#{usuarioBean.carregarNovo()}" onclick="PF('cadastro').show();"/>
                 </p:outputPanel>
                 
                 <p:dataTable value="#{usuarioBean.listaUsuarios}" var="usuario" paginator="true" rows="10">
@@ -41,7 +41,8 @@
                         <p:commandButton ajax="false" icon="ui-icon-trash" actionListener="#{usuarioBean.remover(usuario)}"/>
                     </p:column>
                 </p:dataTable>
-                
+            </h:form>    
+            <h:form>
                 <p:dialog header="Cadastro de Usuario" widgetVar="cadastro" modal="true" height="500">
                     <h:panelGrid columns="2">
                         <p:outputLabel for="txtNomeUsuario" value="Nome: "/>
@@ -53,15 +54,12 @@
                         <p:outputLabel for="txtSenha" value="Senha: "/>
                         <h:inputText id="txtSenha" required="true" value="#{usuarioBean.usuario.senha}"/>
                         
-                        <p:outputLabel for="txtValidaSenha" value="Senha: "/>
-                        <h:inputText id="txtValidaSenha"/>
-                        
                         <p:outputLabel for="txtUsuarioTipo" value="Tipo de Usuario: "/>
                         <h:inputText id="txtUsuarioTipo" value="#{usuarioBean.usuario.usuario_Tipo_Id}"/>
                         
                         <p:outputLabel for="txtEmpresaId" value="Empresa Id: "/>
                         <h:inputText id="txtEmpresaId" value="#{usuarioBean.usuario.empresa_Id}"/>
-                        
+                      
                     </h:panelGrid>
                     
                     <p:commandButton value="Voltar" onclick="PF('cadastro').hide()"/>
