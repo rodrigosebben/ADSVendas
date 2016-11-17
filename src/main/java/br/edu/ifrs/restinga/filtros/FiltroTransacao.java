@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifrs.restinga.filtros;
 
-import br.edu.ifrs.restinga.persistencia.HibernateUtil;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,6 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import br.edu.ifrs.restinga.persistencia.SessaoHibernateUtil;
 
 /**
  *
@@ -28,14 +25,19 @@ public class FiltroTransacao implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
+    {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpSession sessaoHTTP = httpRequest.getSession();
+        SessaoHibernateUtil controleSessaoHibernate = (SessaoHibernateUtil) sessaoHTTP.getAttribute("controleSessaoHibernate");
+        controleSessaoHibernate.iniciarTransacao(); 
         chain.doFilter(request, response);
-        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
+        controleSessaoHibernate.encerrarTransacao();
     }
 
     @Override
-    public void destroy() {
+    public void destroy() 
+    {
        
     }
     

@@ -10,10 +10,10 @@ import org.hibernate.Session;
  * @author Morgana
  */
 public class UsuarioDAO {
-    private final Session sessao;
+    private Session sessao;
     
-    public UsuarioDAO() {
-        sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+    public UsuarioDAO(Session sessao) {
+        this.sessao = sessao;
     }
     
     public void salvar(Usuario usuario) {
@@ -37,8 +37,5 @@ public class UsuarioDAO {
         consulta.setString("usuario", usuario);
         consulta.setString("senha", senha);
         return (Usuario) consulta.uniqueResult();
-    }
-    
-    public void encerrar() {
     }
 }

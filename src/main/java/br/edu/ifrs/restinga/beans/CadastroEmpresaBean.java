@@ -9,7 +9,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import br.edu.ifrs.restinga.modelo.Empresa;
 import br.edu.ifrs.restinga.persistencia.EmpresaDAO;
+import br.edu.ifrs.restinga.persistencia.SessaoHibernateUtil;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,26 +22,16 @@ import javax.faces.bean.SessionScoped;
 public class CadastroEmpresaBean 
 {
     private Empresa empresa = new Empresa();
-    private EmpresaDAO dao = new EmpresaDAO();
-    private boolean ver;
+    private EmpresaDAO dao;
     private List<Empresa> listaEmpresas;
     
-    public void novaEmpresa()
-    {
-        this.ver = false;        
-        this.empresa = new Empresa();
-        resetarFormulario();
-    }
-    
-    public void resetarFormulario() {
-        EmpresaDAO.resetarFormulario("criar");
-    }
-    
-
     public CadastroEmpresaBean() {
+        HttpSession sessaoHTTP = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        SessaoHibernateUtil controleSessaoHibernate = (SessaoHibernateUtil) sessaoHTTP.getAttribute("controleSessaoHibernate");
+        dao = new EmpresaDAO(controleSessaoHibernate.getSession());
         listaEmpresas = dao.listar();
-    }    
-    
+    }
+          
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -56,10 +48,26 @@ public class CadastroEmpresaBean
         this.listaEmpresas = listaEmpresas;
     }
 
-    public void salvar() {
+    public void novaEmpresa() {
+        empresa = new Empresa();
+    }
+    
+    public String salvar() 
+    {
+        boolean novo = empresa.ehNovo();
         dao.salvar(empresa);
-        listaEmpresas.add(empresa);
-        enviarMensagem(FacesMessage.SEVERITY_INFO, "Empresa cadastrada com sucesso");
+        if(novo) 
+	{
+            enviarMensagem(FacesMessage.SEVERITY_INFO, "Empresa cadastrada com sucesso");
+            listaEmpresas.add(empresa);
+            empresa = new Empresa();
+            return null;
+        } 
+        else 
+        {
+            enviarMensagem(FacesMessage.SEVERITY_INFO, "Empresa atualizada com sucesso");
+            return null;
+        }
     }
 
     public void carregar(int id) {
@@ -76,10 +84,5 @@ public class CadastroEmpresaBean
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(sev, msg, ""));
     }
-    
-    @PreDestroy
-    public void encerrar() {
-        dao.encerrar();
-    }
-    
+        
 }

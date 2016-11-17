@@ -141,5 +141,9 @@ public class Empresa
     public void setCelular(String celular) {
         this.celular = celular;
     }
+
+    public boolean ehNovo() {
+        return id == 0;
+    }
     
 }

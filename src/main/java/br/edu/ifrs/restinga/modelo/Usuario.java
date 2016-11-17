@@ -74,5 +74,9 @@ public class Usuario {
     public void setEmpresa_Id(int empresa_Id) {
         this.empresa_Id = empresa_Id;
     }
+
+    public boolean ehNovo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

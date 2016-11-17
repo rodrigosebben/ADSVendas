@@ -11,6 +11,7 @@ package br.edu.ifrs.restinga.beans;
  */
 
 import br.edu.ifrs.restinga.modelo.Usuario;
+import br.edu.ifrs.restinga.persistencia.SessaoHibernateUtil;
 import br.edu.ifrs.restinga.persistencia.UsuarioDAO;
 import java.util.List;
 import javax.annotation.PreDestroy;
@@ -19,16 +20,22 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 
 @ManagedBean(name="usuarioBean")
 @RequestScoped
-public class CadastroUsuarioBean {
+public class CadastroUsuarioBean 
+{
     private Usuario usuario = new Usuario();
-    private UsuarioDAO dao = new UsuarioDAO();
+    private UsuarioDAO dao;
     private List<Usuario> listaUsuarios;
 
-    public CadastroUsuarioBean() {
+    public CadastroUsuarioBean() 
+    {
+        HttpSession sessaoHTTP = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        SessaoHibernateUtil controleSessaoHibernate = (SessaoHibernateUtil) sessaoHTTP.getAttribute("controleSessaoHibernate");
+        dao = new UsuarioDAO(controleSessaoHibernate.getSession());
         listaUsuarios = dao.listar();
     }
     
@@ -48,10 +55,22 @@ public class CadastroUsuarioBean {
         this.listaUsuarios = listaUsuarios;
     }
     
-    public void salvar() {
+    public String salvar() 
+    {
+        boolean novo = usuario.ehNovo();
         dao.salvar(usuario);
-        usuario = new Usuario();
-        enviarMensagem(FacesMessage.SEVERITY_INFO, "Usuario cadastrado com sucesso");
+        if(novo) 
+	{
+            enviarMensagem(FacesMessage.SEVERITY_INFO, "Usuario cadastrado com sucesso");
+            listaUsuarios.add(usuario);
+            usuario = new Usuario();
+            return null;
+        } 
+        else 
+        {
+            enviarMensagem(FacesMessage.SEVERITY_INFO, "Usuario atualizado com sucesso");
+            return null;
+        }
     }
     
     public void carregar(int id) {
@@ -71,11 +90,6 @@ public class CadastroUsuarioBean {
     private void enviarMensagem(Severity sev, String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(sev, msg, ""));
-    }
-    
-    @PreDestroy
-    public void encerrar() {
-        dao.encerrar();
     }
 }
 

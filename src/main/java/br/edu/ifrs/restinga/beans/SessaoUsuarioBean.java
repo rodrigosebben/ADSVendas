@@ -12,6 +12,8 @@ import br.edu.ifrs.restinga.persistencia.UsuarioDAO;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import br.edu.ifrs.restinga.modelo.Usuario;
+import br.edu.ifrs.restinga.persistencia.SessaoHibernateUtil;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,6 +25,13 @@ public class SessaoUsuarioBean {
     private String login;
     private String senha;
     private Usuario usuarioLogado;
+    private UsuarioDAO dao;
+    
+    public SessaoUsuarioBean() {
+        HttpSession sessaoHTTP = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        SessaoHibernateUtil controleSessaoHibernate = (SessaoHibernateUtil) sessaoHTTP.getAttribute("controleSessaoHibernate");
+        dao = new UsuarioDAO(controleSessaoHibernate.getSession());
+    }    
 
     public String getLogin() {
         return login;
@@ -48,10 +57,9 @@ public class SessaoUsuarioBean {
         this.usuarioLogado = usuarioLogado;
     }
     
-    public String fazerLogin() {
-        UsuarioDAO dao = new UsuarioDAO();
+    public String fazerLogin() 
+    {
         usuarioLogado = dao.consultaPorLoginESenha(login, senha);
-        dao.encerrar();
         if(usuarioLogado == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos!", ""));
             return null;
