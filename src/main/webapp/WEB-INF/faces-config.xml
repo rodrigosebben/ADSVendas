@@ -13,6 +13,10 @@
             <to-view-id>Empresa/Empresa.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
+            <from-outcome>cadastroprodutotipo</from-outcome>
+            <to-view-id>Produto/Produto_tipo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>index.xhtml</to-view-id>
         </navigation-case>
