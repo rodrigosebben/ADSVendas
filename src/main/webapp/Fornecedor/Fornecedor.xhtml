@@ -1,16 +1,139 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="../Templates/TelaModelo.xhtml">
+        <ui:define name="titulo">
+            EMPRESA
+        </ui:define>
+        <ui:define name="conteudo">
+
+            <p:growl id="mensagens"/>
+            <h:form id="formListaFornecedor">
+                <p:outputPanel style="background-color: buttonface;display:block;padding-top: 1pt;padding-bottom: 1pt;border: solid black 1pt">
+                    <center><p style="font-weight: bold">Fornecedores</p></center>
+                </p:outputPanel>
+                
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton icon="ui-icon-plusthick" value="Novo Fornecedor" update=":formEditarFornecedor" actionListener="FORNECEDOR BEAN, CHAMAR NOVO FORNECEDOR" oncomplete="PF('dlgEditarEmpresa').show();"/>
+                    </f:facet>
+                </p:toolbar>
+                <p:dataTable id="tabListaEmpresas" value="#{empresaBean.listaEmpresas}" var="empresa" paginator="true" rows="6">
+                    <p:column headerText="ID" sortBy="#{empresa.id}" width="90">
+                        #{empresa.id}
+                    </p:column>
+                    <p:column headerText="Nome" sortBy="#{empresa.nomeEmpresa}">
+                        #{empresa.nomeEmpresa}
+                    </p:column>
+                    <p:column width="135">
+                        <p:commandButton icon="ui-icon-pencil" update=":formEditarEmpresa" actionListener="#{empresaBean.carregar(empresa.id)}" oncomplete="PF('dlgEditarEmpresa').show();"/>
+                        <p:commandButton icon="ui-icon-search" update=":pgDadosEmpresas" actionListener="#{empresaBean.carregar(empresa.id)}" oncomplete="PF('dlgDadosEmpresa').show();"/>
+                        <p:commandButton icon="ui-icon-trash" update="tabListaEmpresas,:mensagens" actionListener="#{empresaBean.remover(empresa)}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="dialogs">
+            <p:dialog header="Dados da Empresa" modal="true" widgetVar="dlgDadosEmpresa" resizable="false">
+                <p:panelGrid id="pgDadosEmpresas" columns="2">
+                    <p:outputLabel for="txtNomeEmpresa" value="Nome: "/>
+                    <h:outputText id="txtNomeEmpresa" value="#{empresaBean.empresa.nomeEmpresa}"/>
+
+                    <p:outputLabel for="txtCNPJ" value="CNPJ: "/>
+                    <h:outputText id="txtCNPJ" value="#{empresaBean.empresa.cnpj}"/>
+
+                    <p:outputLabel for="txtInscricaoEstadual" value="Inscricao Estadual: "/>
+                    <h:outputText id="txtInscricaoEstadual" value="#{empresaBean.empresa.inscricaoEstadual}"/>
+
+                    <p:outputLabel for="txtResponsavel" value="Responsavel: "/>
+                    <h:outputText id="txtResponsavel" value="#{empresaBean.empresa.responsavel}"/>
+
+                    <p:outputLabel for="txtEmail" value="E-Mail: "/>
+                    <h:outputText id="txtEmail" value="#{empresaBean.empresa.email}"/>
+
+                    <p:outputLabel for="txtSite" value="Site: "/>
+                    <h:outputText id="txtSite" value="#{empresaBean.empresa.site}"/>
+
+                    <p:outputLabel for="txtEndereco" value="Endereço: "/>
+                    <h:outputText id="txtEndereco" value="#{empresaBean.empresa.endereco}"/>
+
+                    <p:outputLabel for="txtCompl" value="Complemento: "/>
+                    <h:outputText id="txtCompl" value="#{empresaBean.empresa.compl}"/>
+
+                    <p:outputLabel for="txtBairro" value="Bairro: "/>
+                    <h:outputText id="txtBairro" value="#{empresaBean.empresa.bairro}"/>
+
+                    <p:outputLabel for="txtCidade" value="Cidade: "/>
+                    <h:outputText id="txtCidade" value="#{empresaBean.empresa.cidade}"/>
+
+                    <p:outputLabel for="txtUF" value="UF: "/>
+                    <h:outputText id="txtUF" value="#{empresaBean.empresa.uf}"/>
+
+                    <p:outputLabel for="txtTelefone" value="Telefone: "/>
+                    <h:outputText id="txtTelefone" value="#{empresaBean.empresa.telefone}"/>
+
+                    <p:outputLabel for="txtCelular" value="Celular: "/>
+                    <h:outputText id="txtCelular" value="#{empresaBean.empresa.celular}"/>
+
+                </p:panelGrid>
+            </p:dialog>
+
+            <p:dialog hideEffect="explode" header="Editar Empresa" modal="true" widgetVar="dlgEditarEmpresa" resizable="false">
+                <h:form id="formEditarEmpresa">
+                    <h:panelGrid columns="2">
+
+                    <p:outputLabel for="txtNomeEmpresa" value="Nome: "/>
+                    <h:inputText id="txtNomeEmpresa" value="#{empresaBean.empresa.nomeEmpresa}" required="true"/>
+
+                    <p:outputLabel for="txtCNPJ" value="CNPJ: "/>
+                    <p:inputMask id="txtCNPJ" mask="99.999.999/9999-99" value="#{empresaBean.empresa.cnpj}"/>
+
+                    <p:outputLabel for="txtInscricaoEstadual" value="Inscricao Estadual: "/>
+                    <h:inputText id="txtInscricaoEstadual" value="#{empresaBean.empresa.inscricaoEstadual}"/>
+
+                    <p:outputLabel for="txtResponsavel" value="Responsavel: "/>
+                    <h:inputText id="txtResponsavel" value="#{empresaBean.empresa.responsavel}"/>
+
+                    <p:outputLabel for="txtEmail" value="E-Mail: "/>
+                    <h:inputText id="txtEmail" value="#{empresaBean.empresa.email}"/>
+
+                    <p:outputLabel for="txtSite" value="Site: "/>
+                    <h:inputText id="txtSite" value="#{empresaBean.empresa.site}"/>
+
+                    <p:outputLabel for="txtEndereco" value="Endereço: "/>
+                    <h:inputText id="txtEndereco" value="#{empresaBean.empresa.endereco}"/>
+
+                    <p:outputLabel for="txtCompl" value="Complemento: "/>
+                    <h:inputText id="txtCompl" value="#{empresaBean.empresa.compl}"/>
+
+                    <p:outputLabel for="txtBairro" value="Bairro: "/>
+                    <h:inputText id="txtBairro" value="#{empresaBean.empresa.bairro}"/>
+
+                    <p:outputLabel for="txtCidade" value="Cidade: "/>
+                    <h:inputText id="txtCidade" value="#{empresaBean.empresa.cidade}"/>
+
+                    <p:outputLabel for="txtUF" value="UF: "/>
+                    <h:inputText id="txtUF" value="#{empresaBean.empresa.uf}"/>
+
+                    <p:outputLabel for="txtTelefone" value="Telefone: "/>
+                    <p:inputMask id="txtTelefone" mask="(99)9999-9999" value="#{empresaBean.empresa.telefone}"/>
+
+                    <p:outputLabel for="txtCelular" value="Celular: "/>
+                    <p:inputMask id="txtCelular" mask="(99)9999-9999" value="#{empresaBean.empresa.celular}"/>
+
+                    </h:panelGrid>
+                    <p:commandButton value="Salvar" update=":formListaEmpresas:tabListaEmpresas,:mensagens" action="#{empresaBean.salvar()}" oncomplete="PF('dlgEditarEmpresa').hide();"/>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+
+    </ui:composition>
+    
 </html>
+
