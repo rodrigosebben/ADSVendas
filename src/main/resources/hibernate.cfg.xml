@@ -8,8 +8,10 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.connection.password">1904</property>
     <mapping class="br.edu.ifrs.restinga.modelo.Empresa" file="" jar="" package="" resource=""/>
     <mapping class="br.edu.ifrs.restinga.modelo.Usuario" file="" jar="" package="" resource=""/>
-    <mapping class="br.edu.ifrs.restinga.modelo.Produto_tipo"/>
+    <mapping class="br.edu.ifrs.restinga.modelo.Produto_tipo" file="" jar="" package="" resource=""/>
+    <mapping class="br.edu.ifrs.restinga.modelo.Fornecedor"/>
   </session-factory>
 </hibernate-configuration>

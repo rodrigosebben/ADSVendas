@@ -19,11 +19,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Morgana
  */
-@ManagedBean(name="empresaBean")
+@ManagedBean(name="fornecedorBean")
 @SessionScoped
 public class CadastroFornecedorBean 
 {
-    private Fornecedor empresa = new Empresa();
+    private Fornecedor fornecedor = new Fornecedor();
     private FornecedorDAO dao;
     private List<Fornecedor> listaFornecedores;
     
@@ -46,7 +46,7 @@ public class CadastroFornecedorBean
         return listaFornecedores;
     }
 
-    public void setListaFornecedores(List<Fornecedores> listaFornecedores) {
+    public void setListaFornecedores(List<Fornecedor> listaFornecedores) {
         this.listaFornecedores = listaFornecedores;
     }
 
@@ -67,7 +67,7 @@ public class CadastroFornecedorBean
         } 
         else 
         {
-            enviarMensagem(FacesMessage.SEVERITY_INFO, "Fornecedor atualizada com sucesso");
+            enviarMensagem(FacesMessage.SEVERITY_INFO, "Fornecedor atualizado com sucesso");
             return null;
         }
     }

@@ -40,9 +40,8 @@ public class FornecedorDAO
 
     public Fornecedor consultaPorFornecedor(String fornecedor) 
     {
-        Query consulta = sessao.createQuery("FROM Fornecedor WHERE nomeFornecedor = :fornecedor");
+        Query consulta = sessao.createQuery("FROM produto_fornecedor WHERE nomeFornecedor = :fornecedor");
         consulta.setString("fornecedor", fornecedor);
         return (Fornecedor) consulta.uniqueResult();
     }
-    
 }
